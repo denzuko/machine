@@ -25,6 +25,7 @@ func TestSetConfigFromDefaultFlags(t *testing.T) {
 
 	assert.Equal(t, "", driver.Boot2DockerURL)
 	assert.Equal(t, "", driver.VSwitch)
+	assert.Equal(t, defaultComputerName, driver.Computername)
 	assert.Equal(t, defaultDiskSize, driver.DiskSize)
 	assert.Equal(t, defaultMemory, driver.MemSize)
 	assert.Equal(t, defaultCPU, driver.CPU)
@@ -41,6 +42,7 @@ func TestSetConfigFromCustomFlags(t *testing.T) {
 		FlagsValues: map[string]interface{}{
 			"hyperv-boot2docker-url":        "B2D_URL",
 			"hyperv-virtual-switch":         "TheSwitch",
+			"hyperv-computer-name":          "localhost",
 			"hyperv-disk-size":              100000,
 			"hyperv-memory":                 4096,
 			"hyperv-cpu-count":              4,
@@ -61,6 +63,7 @@ func TestSetConfigFromCustomFlags(t *testing.T) {
 
 	assert.Equal(t, "B2D_URL", driver.Boot2DockerURL)
 	assert.Equal(t, "TheSwitch", driver.VSwitch)
+	assert.Equal(t, "localhost", driver.ComputerName)
 	assert.Equal(t, 100000, driver.DiskSize)
 	assert.Equal(t, 4096, driver.MemSize)
 	assert.Equal(t, 4, driver.CPU)
